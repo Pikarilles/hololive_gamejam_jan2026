@@ -1,7 +1,10 @@
 extends Node2D
 
+class_name Generator
+
 @export var generator_type: String;
 @export var generator_level: int;
+@export var sprite: Sprite2D;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

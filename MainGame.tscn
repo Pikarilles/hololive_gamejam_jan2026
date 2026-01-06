@@ -1,16 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4l07cchjw5ds"]
+[gd_scene load_steps=4 format=3 uid="uid://c4l07cchjw5ds"]
 
 [ext_resource type="Texture2D" uid="uid://kt420cwdvk10" path="res://Assets/Background/test_background.png" id="1_3tbxw"]
 [ext_resource type="Script" uid="uid://n01lp5yte1h6" path="res://Scripts/grid.gd" id="2_e3m3f"]
+[ext_resource type="PackedScene" uid="uid://bnhv6of7trmqx" path="res://Scenes/ItemMusic.tscn" id="3_ws5ob"]
 
 [node name="MainGame" type="Node2D"]
 
 [node name="Background" type="TextureRect" parent="."]
+z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_3tbxw")
 
 [node name="Grid" type="Node2D" parent="."]
+z_index = -1
 script = ExtResource("2_e3m3f")
 width = 6
 height = 6
+x_start = 10
+y_start = 100
+offset = 5
+
+[node name="ItemMusic" parent="Grid" instance=ExtResource("3_ws5ob")]
+position = Vector2(25, 21)

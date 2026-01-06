@@ -6,22 +6,32 @@ extends Node2D
 @export var y_start: int;
 @export var offset: int;
 
-# Possible pieces - maybe use this for orders
+@onready var test_item = $ItemMusic;
+
+# Possible pieces - maybe use this for the deadlines
 var possible_items = [
 	preload("res://Scenes/ItemMusic.tscn")
 ];
 
+var possible_generators = [
+	preload("res://Scenes/ItemMusic.tscn")
+];
 
-
+var defaultImg = preload("res://Assets/Icons/test_item1.png");
 
 var grid = [];
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	grid = fill_grid_array();
 	print(grid);
-	#add_child(generator)
-	print(find_empty_tile());
+	print(test_item.tree_sprite);
+	#var first_generator: Item = Item.new("music", 1);
+	var first_generator: Item = Item.new();
+	first_generator.tree_sprite = defaultImg;
+	add_child(first_generator);
+	insert_item(first_generator);
+	print(grid);
+	print(first_generator.tree_sprite);
 
 func fill_grid_array():
 	var array = [];
@@ -41,6 +51,22 @@ func find_empty_tile():
 		for j in height:
 			if grid[i][j] == []:
 				return Vector2(i, j);
+	return null;
+
+func insert_item(item: Item):
+	# Find an empty tile
+	var empty_space = find_empty_tile()
+	# Add item to the empty tile
+	if empty_space != null:
+		print(empty_space);
+		grid[empty_space.x][empty_space.y] = item;
+		item.position = grid_to_pixel(empty_space.x, empty_space.y);
+		print (item.position);
+	else:
+		# If the item is a generator, backlog it for when an empty tile exists
+
+		# Return a "board is full message"
+		return null;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

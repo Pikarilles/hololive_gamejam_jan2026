@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dp2o5bnxk40lw" path="res://Assets/Icons/test_item1.png" id="2_sbnvg"]
 
 [node name="ItemMusic" type="Node2D"]
+z_index = 1
 script = ExtResource("1_jqlo2")
 item_type = "music"
 item_level = 1

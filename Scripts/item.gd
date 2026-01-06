@@ -1,12 +1,17 @@
 extends Node2D
 
+class_name Item
+
 @export var item_type: String;
 @export var item_level: int;
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var item_sprite: Sprite2D;
 
+@onready var tree_sprite = $Sprite;
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+var defaultImg = load("res://Assets/Icons/test_item1.png");
+
+func _init(p_type: String = "music", p_level: int = 1, p_sprite: Sprite2D = tree_sprite):
+	item_type = p_type;
+	item_level = p_level;
+	item_sprite = p_sprite;
+	#textureImage = p_texture;

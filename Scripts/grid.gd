@@ -8,7 +8,7 @@ extends Node2D
 
 # Possible pieces - maybe use this for orders
 var possible_items = [
-	preload("res://Scenes/Item_Music.tscn")
+	preload("res://Scenes/ItemMusic.tscn")
 ];
 
 

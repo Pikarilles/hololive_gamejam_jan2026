@@ -17,9 +17,10 @@ z_index = -1
 script = ExtResource("2_e3m3f")
 width = 6
 height = 6
-x_start = 10
-y_start = 100
+x_start = 30
+y_start = 290
 offset = 5
 
 [node name="ItemMusic" parent="Grid" instance=ExtResource("3_ws5ob")]
+visible = false
 position = Vector2(25, 21)

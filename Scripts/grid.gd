@@ -8,6 +8,9 @@ extends Node2D
 
 @onready var test_item = $ItemMusic;
 
+# Placeholder generator variable
+
+
 # Possible pieces - maybe use this for the deadlines
 var possible_items = [
 	preload("res://Scenes/ItemMusic.tscn")
@@ -17,21 +20,13 @@ var possible_generators = [
 	preload("res://Scenes/ItemMusic.tscn")
 ];
 
-var defaultImg = preload("res://Assets/Icons/test_item1.png");
-
 var grid = [];
 
 func _ready() -> void:
 	grid = fill_grid_array();
-	print(grid);
-	print(test_item.tree_sprite);
-	#var first_generator: Item = Item.new("music", 1);
-	var first_generator: Item = Item.new();
-	first_generator.tree_sprite = defaultImg;
+	var first_generator = possible_items[0].instantiate();
 	add_child(first_generator);
 	insert_item(first_generator);
-	print(grid);
-	print(first_generator.tree_sprite);
 
 func fill_grid_array():
 	var array = [];

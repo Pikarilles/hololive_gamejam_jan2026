@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnhv6of7trmqx"]
+
+[ext_resource type="Script" uid="uid://boryc3f8q3y5u" path="res://Scripts/item.gd" id="1_jqlo2"]
+[ext_resource type="Texture2D" uid="uid://citvksljdunx2" path="res://Assets/Icons/test_item2.png" id="2_72kk4"]
+[ext_resource type="Texture2D" uid="uid://dp2o5bnxk40lw" path="res://Assets/Icons/test_item1.png" id="2_sbnvg"]
+[ext_resource type="Texture2D" uid="uid://bn40eh27jqdlf" path="res://Assets/Icons/test_item3.png" id="4_72kk4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jqlo2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sbnvg")
+}],
+"loop": true,
+"name": &"Level1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_72kk4")
+}],
+"loop": true,
+"name": &"Level2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_72kk4")
+}],
+"loop": true,
+"name": &"Level3",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_5a2e5"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwgvv"]
+_data = {
+&"new_animation": SubResource("Animation_5a2e5")
+}
+
+[node name="ItemMusic" type="Sprite2D"]
+z_index = 1
+script = ExtResource("1_jqlo2")
+item_type = "music"
+item_level = 1
+
+[node name="ImageTree" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jqlo2")
+animation = &"Level1"
+frame_progress = 0.5414637
+
+[node name="Sprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_sbnvg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mwgvv")
+}

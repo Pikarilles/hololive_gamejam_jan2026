@@ -4,11 +4,7 @@ class_name Item
 
 @export var item_type: String;
 @export var item_level: int;
-@export var item_sprite: Sprite2D;
-
-var level1Img = load("res://Assets/Icons/test_item1.png");
-var level2Img = load("res://Assets/Icons/test_item2.png");
-var level3Img = load("res://Assets/Icons/test_item3.png");
+@export var item_gen: bool;
 
 var first_position = Vector2(0, 0);
 var final_position = Vector2(0, 0);
@@ -35,9 +31,10 @@ func _input(event):
 				is_dragging = false;
 				global.move_item.emit(first_position, final_position);
 
-func _init(p_type: String = "music", p_level: int = 1):
+func _init(p_type: String = "music", p_level: int = 1, p_gen: bool = false):
 	item_type = p_type;
 	item_level = p_level;
+	item_gen = p_gen;
 
 func _ready():
 	image_manager(item_level);
@@ -54,5 +51,14 @@ func update_level():
 	image_manager(item_level);
 	
 func image_manager(level):
-	var texture_image = load("res://Assets/Icons/test_item" + str(level) + ".png");
+	var file_string = "";
+	var text_gen = "";
+	
+	if item_gen:
+		text_gen = "gen";
+	else:
+		text_gen = "item";
+		
+	file_string = item_type + "_" + text_gen + str(level);
+	var texture_image = load("res://Assets/Icons/test_" + file_string + ".png");
 	self.texture = texture_image;

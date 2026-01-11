@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://btyth236lu21h"]
 
 [ext_resource type="Script" uid="uid://v10bomfuos5l" path="res://Scripts/generator.gd" id="1_gkkx4"]
-[ext_resource type="Texture2D" uid="uid://sk364gs7xks2" path="res://Assets/Icons/test_generator1.png" id="2_7r66l"]
+[ext_resource type="Texture2D" uid="uid://sk364gs7xks2" path="res://Assets/Icons/test_music_gen1.png" id="2_7r66l"]
 
 [node name="GeneratorMusic" type="Node2D"]
 script = ExtResource("1_gkkx4")

@@ -32,6 +32,7 @@ func _ready() -> void:
 	for i in width:
 		for j in (height/2):
 			var first_generator = possible_items[0].instantiate();
+			first_generator.item_gen = true;
 			add_child(first_generator);
 			insert_item(first_generator);
 			global.move_item.connect(on_move_item);

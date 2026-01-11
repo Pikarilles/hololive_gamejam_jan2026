@@ -8,8 +8,7 @@ extends Control
 
 
 func _on_start_pressed() -> void:
-	Global.curr_cutscene = Global.Endings.INTRO
-	get_tree().change_scene_to_file("res://Scenes/Cutscene.tscn")
+	get_tree().change_scene_to_file("res://Scenes/MainGame.tscn")
 
 func _on_tutorial_pressed() -> void:
 	title.hide()

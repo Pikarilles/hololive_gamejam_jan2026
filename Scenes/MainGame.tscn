@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4l07cchjw5ds"]
+[gd_scene load_steps=6 format=3 uid="uid://c4l07cchjw5ds"]
 
 [ext_resource type="Texture2D" uid="uid://1poit00bwfuf" path="res://Assets/Background/GridBox.png" id="1_yprpe"]
+[ext_resource type="Script" uid="uid://chl0tx843eaa1" path="res://Scripts/description.gd" id="2_321ql"]
 [ext_resource type="Script" uid="uid://n01lp5yte1h6" path="res://Scripts/grid.gd" id="2_e3m3f"]
 [ext_resource type="Texture2D" uid="uid://ivc2us38emgm" path="res://Assets/Background/DescriptionBox.png" id="2_ybmw1"]
 [ext_resource type="PackedScene" uid="uid://bnhv6of7trmqx" path="res://Scenes/ItemMusic.tscn" id="3_ws5ob"]
@@ -32,27 +33,29 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_yprpe")
 
-[node name="Description" type="TextureRect" parent="."]
+[node name="Description" type="Node2D" parent="."]
+script = ExtResource("2_321ql")
+
+[node name="DescriptionBox" type="TextureRect" parent="Description"]
 z_index = -1
 offset_right = 360.0
 offset_bottom = 640.0
 texture = ExtResource("2_ybmw1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Description"]
+[node name="DescriptionText" type="RichTextLabel" parent="Description/DescriptionBox"]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 578.0
 offset_right = 348.0
 offset_bottom = 632.0
 theme_override_colors/default_color = Color(0.021434637, 0.021434635, 0.021434633, 1)
-theme_override_font_sizes/normal_font_size = 14
-text = "Testing..."
+theme_override_font_sizes/normal_font_size = 12
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Grid" type="Node2D" parent="."]
+[node name="GridFunction" type="Node2D" parent="."]
 z_index = -1
 script = ExtResource("2_e3m3f")
 width = 6
@@ -61,6 +64,6 @@ x_start = 36
 y_start = 250
 offset = 57
 
-[node name="ItemMusic" parent="Grid" instance=ExtResource("3_ws5ob")]
+[node name="ItemMusic" parent="GridFunction" instance=ExtResource("3_ws5ob")]
 visible = false
 position = Vector2(25, 21)

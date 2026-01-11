@@ -96,16 +96,15 @@ func _input(event):
 			var first_click = get_global_mouse_position();
 			var clicked_pos = pixel_to_grid(first_click.x, first_click.y);
 			var clicked_item = grid[clicked_pos.x][clicked_pos.y];
+			global.update_description.emit(clicked_item);
 			# TODO: Add ability to update the description with selected item
 			if event.is_double_click():
-				# TODO: If item is generator, check for empty space and add item
 				if clicked_item.item_gen:
 					if find_empty_tile() != null:
 						var new_item = possible_items[0].instantiate();
 						new_item.item_gen = false;
 						add_child(new_item);
 						insert_item(new_item, clicked_pos);
-						#global.move_item.connect(on_move_item);
 						
 	#if Input.is_action_just_pressed("ui_touch"):
 		#first_touch = get_global_mouse_position();

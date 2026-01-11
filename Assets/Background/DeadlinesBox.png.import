@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://citvksljdunx2"
-path="res://.godot/imported/test_music_item2.png-3105184a700feedd8ebfe4c226dbf42f.ctex"
+uid="uid://cfyxan0ijkvm5"
+path="res://.godot/imported/DeadlinesBox.png-a1fec9c858a4198eb6afccef072e8d64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/test_music_item2.png"
-dest_files=["res://.godot/imported/test_music_item2.png-3105184a700feedd8ebfe4c226dbf42f.ctex"]
+source_file="res://Assets/Background/DeadlinesBox.png"
+dest_files=["res://.godot/imported/DeadlinesBox.png-a1fec9c858a4198eb6afccef072e8d64.ctex"]
 
 [params]
 

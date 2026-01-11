@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cd4h4o6ygon33"]
 
 [ext_resource type="Script" uid="uid://buukpfcvwe3oh" path="res://Scripts/title_screen.gd" id="1_kjfxj"]
-[ext_resource type="Texture2D" uid="uid://dduitc7ftvnby" path="res://Assets/Art/Logo.png" id="2_emot1"]
+[ext_resource type="Texture2D" uid="uid://bqfy5psdva02r" path="res://Assets/Art/GameLogo.png" id="2_n15yj"]
 [ext_resource type="Texture2D" uid="uid://e01qxawv8ppt" path="res://Assets/Art/Tutorial.png" id="4_emot1"]
 [ext_resource type="Texture2D" uid="uid://b2b7rhbcbv874" path="res://Assets/Background/Credits.png" id="5_i5sur"]
 
@@ -15,13 +15,12 @@ grow_vertical = 2
 script = ExtResource("1_kjfxj")
 
 [node name="TitleText" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 1.0
+offset_left = 7.0
 offset_top = 2.0
-offset_right = 961.0
+offset_right = 365.0
 offset_bottom = 252.0
-texture = ExtResource("2_emot1")
+texture = ExtResource("2_n15yj")
 stretch_mode = 3
 
 [node name="MenuButtons" type="VBoxContainer" parent="."]

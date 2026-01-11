@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn40eh27jqdlf"
-path="res://.godot/imported/test_music_item3.png-ec8eb9e82c4e6da3b3553cdb71df34a0.ctex"
+uid="uid://dtjchxvqymfs8"
+path="res://.godot/imported/Lvl6 Album.png-04e91fc6a18add7e3b6ef51eae17a0e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/test_music_item3.png"
-dest_files=["res://.godot/imported/test_music_item3.png-ec8eb9e82c4e6da3b3553cdb71df34a0.ctex"]
+source_file="res://Assets/Art/Lvl6 Album.png"
+dest_files=["res://.godot/imported/Lvl6 Album.png-04e91fc6a18add7e3b6ef51eae17a0e5.ctex"]
 
 [params]
 

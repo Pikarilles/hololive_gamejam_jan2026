@@ -29,13 +29,11 @@ var test;
 
 func _ready() -> void:
 	grid = fill_grid_array();
-	for i in width:
-		for j in (height/2):
-			var first_generator = possible_items[0].instantiate();
-			first_generator.item_gen = true;
-			add_child(first_generator);
-			insert_item(first_generator);
-			global.move_item.connect(on_move_item);
+	var first_generator = possible_items[0].instantiate();
+	first_generator.item_gen = true;
+	add_child(first_generator);
+	insert_item(first_generator, Vector2(0, 0));
+	global.move_item.connect(on_move_item);
 
 func fill_grid_array():
 	var array = [];
@@ -64,17 +62,24 @@ func is_in_grid(column, row):
 func find_empty_tile():
 	for i in width:
 		for j in height:
-			if not grid[i][j]:
-				return Vector2(i, j);
+			if not grid[j][i]:
+				return Vector2(j, i);
 	return null;
 
-func insert_item(item: Item):
-	# Find an empty tile
+func insert_item(item: Item, initial_pos: Vector2):
+	
 	var empty_space = find_empty_tile()
-	# Add item to the empty tile
+
 	if empty_space != null:
 		grid[empty_space.x][empty_space.y] = item;
-		item.position = grid_to_pixel(empty_space.x, empty_space.y);
+		item.position = grid_to_pixel(initial_pos.x, initial_pos.y);
+
+		if item.item_gen == false:
+			print(initial_pos)
+			print(empty_space)
+			item.move(grid_to_pixel(empty_space.x, empty_space.y));
+		else:
+			item.position = grid_to_pixel(empty_space.x, empty_space.y);
 	else:
 		# If the item is a generator, backlog it for when an empty tile exists
 
@@ -85,7 +90,23 @@ func insert_item(item: Item):
 # This would involve detecting clicks/double-clicks
 # Click - select icon and show desc
 # Double-click - generate new item
-#func touch_input():
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			var first_click = get_global_mouse_position();
+			var clicked_pos = pixel_to_grid(first_click.x, first_click.y);
+			var clicked_item = grid[clicked_pos.x][clicked_pos.y];
+			# TODO: Add ability to update the description with selected item
+			if event.is_double_click():
+				# TODO: If item is generator, check for empty space and add item
+				if clicked_item.item_gen:
+					if find_empty_tile() != null:
+						var new_item = possible_items[0].instantiate();
+						new_item.item_gen = false;
+						add_child(new_item);
+						insert_item(new_item, clicked_pos);
+						#global.move_item.connect(on_move_item);
+						
 	#if Input.is_action_just_pressed("ui_touch"):
 		#first_touch = get_global_mouse_position();
 		#var grid_position = pixel_to_grid(first_touch.x, first_touch.y);
@@ -103,6 +124,9 @@ func on_move_item(first_pos, final_pos):
 	var first_grid_pos = pixel_to_grid(first_pos.x, first_pos.y);
 	var final_grid_pos = pixel_to_grid(final_pos.x, final_pos.y);
 	var first_item = grid[first_grid_pos.x][first_grid_pos.y];
+	if first_grid_pos == final_grid_pos:
+		first_item.move(grid_to_pixel(first_grid_pos.x, first_grid_pos.y));
+		return;
 	if is_in_grid(first_grid_pos.x, first_grid_pos.y) && is_in_grid(final_grid_pos.x, final_grid_pos.y):
 		process_pieces(first_grid_pos, final_grid_pos);
 	else:
@@ -113,10 +137,20 @@ func process_pieces(first_grid_pos, final_grid_pos):
 	var other_item = grid[final_grid_pos.x][final_grid_pos.y];
 	# If they are the same item, then merge it
 	if first_item && other_item:
-		if first_item.item_type == other_item.item_type && first_item.item_level == other_item.item_level:
-			first_item.queue_free();
-			other_item.update_level();
-			grid[final_grid_pos.x][final_grid_pos.y] = other_item;
+		if first_item.item_type == other_item.item_type &&\
+		   first_item.item_level == other_item.item_level &&\
+		   first_item.item_gen == other_item.item_gen:
+			if not first_item.is_max_level():
+				first_item.queue_free();
+				other_item.update_level();
+				grid[final_grid_pos.x][final_grid_pos.y] = other_item;
+			else:
+				grid[first_grid_pos.x][first_grid_pos.y] = other_item;
+				grid[final_grid_pos.x][final_grid_pos.y] = first_item;
+				if first_item:
+					first_item.move(grid_to_pixel(final_grid_pos.x, final_grid_pos.y))
+				if other_item:
+					other_item.move(grid_to_pixel(first_grid_pos.x, first_grid_pos.y));
 		else:
 			grid[first_grid_pos.x][first_grid_pos.y] = other_item;
 			grid[final_grid_pos.x][final_grid_pos.y] = first_item;

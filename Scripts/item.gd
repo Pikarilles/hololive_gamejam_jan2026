@@ -6,6 +6,11 @@ class_name Item
 @export var item_level: int;
 @export var item_gen: bool;
 
+var MAX_LEVELS = {
+	"music_gen": 1,
+	"music_item": 3
+}
+
 var first_position = Vector2(0, 0);
 var final_position = Vector2(0, 0);
 
@@ -62,3 +67,22 @@ func image_manager(level):
 	file_string = item_type + "_" + text_gen + str(level);
 	var texture_image = load("res://Assets/Icons/test_" + file_string + ".png");
 	self.texture = texture_image;
+
+func is_max_level():
+	var dict_string = "";
+	var text_gen = "";
+	
+	if item_gen:
+		text_gen = "gen";
+	else:
+		text_gen = "item";
+		
+	dict_string = item_type + "_" + text_gen;
+	
+	if dict_string in MAX_LEVELS:
+		if MAX_LEVELS[dict_string] == item_level:
+			return true;
+		else:
+			return false;
+	return false;
+	

@@ -3,15 +3,15 @@ extends Node2D
 @onready var textbox = $DescriptionBox/DescriptionText;
 
 const DESCRIPTIONS = {
-	"music_generator1": "A music box. Generates Vocal Practice and Singing.",
-	"music_item1": "Vocal Practice - “GUH.” Merge to Singing",
-	"music_item2": "Singing - “Excuse My Rudeness, But Could You Please RIP?” Merge to Dance Lesson", 
-	"music_item3": "Dance Lesson - “You made me dance next to horses. $%@# you. Die Gigi!” Merge to Lyric Writing", 
-	"music_item4": "Lyric Writing - “GUH.” Merge to Song", 
-	"music_item5": "Song - “” Merge to Album",
-	"music_item6": "Album - “SINDERELLA.” Merge to Collaboration",
-	"music_item7": "Collaboration - “Everybody loves the sound of the C-man.” Merge to Live Concert",
-	"music_item8": "Live Concert - “HUGE W.” This is the max level" 
+	"music_generator1": "It's a MUSIC BOX. Generates VOCAL PRACTICE and SINGING.",
+	"music_item1": "VOCAL PRACTICE LEVEL 1 - “GUH.” Merge to become SINGING",
+	"music_item2": "SINGING LEVEL 2 - “Excuse My Rudeness, But Could You Please RIP?” Merge to become DANCE LESSON", 
+	"music_item3": "DANCE LESSON LEVEL 3 - “You made me dance next to horses. $%@# you. Die Gigi!” Merge to become LYRIC WRITING", 
+	"music_item4": "LYRIC WRITING LEVEL 4 - “I'll never find my way back to you inside this labyrinth of lights.” Merge to become SONG", 
+	"music_item5": "SONG LEVEL 5 - “Mori's in the building so you know you're already dead.” Merge to become ALBUM",
+	"music_item6": "ALBUM LEVEL 6 - “SINDERELLA.” Merge to become COLLABORATION",
+	"music_item7": "COLLABORATION LEVEL 7 - “Queen of the Night.” Merge to become LIVE CONCERT",
+	"music_item8": "LIVE CONCERT LEVEL 8 - “HUGE W.” This is the max level." 
 }
 
 func _ready():

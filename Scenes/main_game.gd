@@ -4,12 +4,17 @@ extends Node2D
 @onready var deadline_container = $DeadlineScroll/DeadlineContainer;
 @onready var failed_sound = $FailedSound;
 @onready var completed_sound = $CompletedSound;
+@onready var completed_label = $CompletedDeadline
+@onready var failed_label = $FailedDeadline
+@onready var ending_screen = $EndingScreen
+@onready var completed_result_label = $EndingScreen/FinalResult/CompletedResult
+
 
 const MAX_DEADLINES = 2;
 
 var deadline_scene = preload("res://Scenes/Deadline.tscn")
-var completed_orders = 0;
-var failed_orders = 0;
+var completed_deadlines = 0;
+var failed_deadlines = 0;
 
 var deadline_list = [];
 var grid_removals = [];
@@ -64,10 +69,29 @@ func update_grid(grid_removal_list):
 	for i in grid_removal_list.size():
 		gridFunction.remove_item(grid_removal_list[i]);
 
-func on_failed_deadline():
+func on_failed_deadline(deadlines):
+	deadline_list.erase(deadlines);
 	failed_sound.play();
-	failed_orders += 1;
+	failed_deadlines += 1;
+	failed_label.text = "Failed: " + str(failed_deadlines);
+	if failed_deadlines >= 3:
+		end_game();
 
 func completed_deadline():
 	completed_sound.play();
-	completed_orders += 1;
+	completed_deadlines += 1;
+	completed_label.text = "Completed: " + str(completed_deadlines);
+
+func end_game():
+	completed_result_label.text = "Final Score: " + str(completed_deadlines);
+	failed_sound.volume_db = -100;
+	gridFunction.hide();
+	deadline_container.hide();
+	gridFunction.process_mode = Node.PROCESS_MODE_DISABLED;
+	ending_screen.show();
+
+func _on_play_again_pressed() -> void:
+	get_tree().reload_current_scene();
+
+func _on_return_to_main_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn");

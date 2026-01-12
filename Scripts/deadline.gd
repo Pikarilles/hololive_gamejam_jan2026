@@ -1,8 +1,8 @@
 extends Control
 
 #signal completed_order
-signal check_deadline(deadline_list)
-signal failed_deadline
+signal check_deadline(deadline)
+signal failed_deadline(deadline)
 
 @onready var deadline_list_box = $DeadlineList;
 @onready var timer_bar = $VBoxContainer/TimeRemaining;
@@ -28,7 +28,7 @@ func generate_deadline():
 	for i in item_amount:
 		var item = item_scene.instantiate();
 		item.item_click = false;
-		item.item_level = randi_range(1, 2);
+		item.item_level = randi_range(1, 8);
 		#add_child(item);
 		deadlines.append(item);
 		#var item_rect = TextureRect.new();
@@ -45,7 +45,7 @@ func _physics_process(_delta: float):
 
 func _on_timer_timeout() -> void:
 	# Delete itself and send +1 to failed orders
-	failed_deadline.emit();
+	failed_deadline.emit(self);
 	queue_free(); # Replace with function body.
 
 # Function to check if an order is complete

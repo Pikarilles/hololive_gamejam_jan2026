@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd4h4o6ygon33"]
+[gd_scene load_steps=7 format=3 uid="uid://cd4h4o6ygon33"]
 
 [ext_resource type="Script" uid="uid://buukpfcvwe3oh" path="res://Scripts/title_screen.gd" id="1_kjfxj"]
 [ext_resource type="Texture2D" uid="uid://bqfy5psdva02r" path="res://Assets/Art/GameLogo.png" id="2_n15yj"]
+[ext_resource type="Texture2D" uid="uid://bb1uw8ifjf77a" path="res://Assets/Art/Intro.png" id="3_i5sur"]
 [ext_resource type="Texture2D" uid="uid://e01qxawv8ppt" path="res://Assets/Art/Tutorial.png" id="4_emot1"]
 [ext_resource type="AudioStream" uid="uid://cja1iw57gim7t" path="res://Assets/Audio/title.mp3" id="5_emot1"]
 [ext_resource type="Texture2D" uid="uid://b2b7rhbcbv874" path="res://Assets/Background/Credits.png" id="5_i5sur"]
@@ -38,6 +39,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Start"
 
+[node name="Intro" type="Button" parent="MenuButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Intro"
+
 [node name="Tutorial" type="Button" parent="MenuButtons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
@@ -68,21 +74,32 @@ offset_bottom = 1015.0
 [node name="TextureRect" type="TextureRect" parent="BackgroundImage/CenterContainer"]
 layout_mode = 2
 
+[node name="IntroScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="IntroScreen"]
+offset_right = 360.0
+offset_bottom = 640.0
+texture = ExtResource("3_i5sur")
+stretch_mode = 2
+metadata/_edit_lock_ = true
+
 [node name="TutorialScreen" type="CanvasLayer" parent="."]
 visible = false
 
 [node name="TextureRect" type="TextureRect" parent="TutorialScreen"]
-offset_right = 962.0
-offset_bottom = 540.0
+offset_right = 360.0
+offset_bottom = 640.0
 texture = ExtResource("4_emot1")
+stretch_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="CreditsScreen" type="CanvasLayer" parent="."]
 visible = false
 
 [node name="TextureRect" type="TextureRect" parent="CreditsScreen"]
-offset_right = 960.0
-offset_bottom = 540.0
+offset_right = 360.0
+offset_bottom = 640.0
 texture = ExtResource("5_i5sur")
 stretch_mode = 2
 metadata/_edit_lock_ = true
@@ -105,6 +122,7 @@ stream = ExtResource("5_emot1")
 autoplay = true
 
 [connection signal="pressed" from="MenuButtons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MenuButtons/Intro" to="." method="_on_intro_pressed"]
 [connection signal="pressed" from="MenuButtons/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="MenuButtons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Back/BackButton" to="." method="_on_back_pressed"]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs2p3oxwofyct"]
+
+[ext_resource type="Script" uid="uid://d3eup0gyutns5" path="res://Scripts/deadline.gd" id="1_82bga"]
+[ext_resource type="Texture2D" uid="uid://cfyxan0ijkvm5" path="res://Assets/Background/DeadlinesBox.png" id="1_n1hfm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82bga"]
+bg_color = Color(0.93661666, 0.3943417, 0.47829765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_subih"]
+
+[node name="Deadline" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_82bga")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -150.0
+offset_right = 181.0
+offset_bottom = 68.0
+texture = ExtResource("1_n1hfm")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="OrderList" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 178.0
+offset_bottom = 65.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_left = 8.0
+offset_top = 47.0
+offset_right = 174.0
+offset_bottom = 60.0
+alignment = 2
+
+[node name="TimeRemaining" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_82bga")
+theme_override_styles/fill = SubResource("StyleBoxFlat_subih")
+max_value = 5.0
+fill_mode = 1
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="VBoxContainer/TimeRemaining"]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="VBoxContainer/TimeRemaining/Timer" to="." method="_on_timer_timeout"]

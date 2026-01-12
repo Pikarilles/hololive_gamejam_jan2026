@@ -7,3 +7,4 @@ z_index = 1
 script = ExtResource("1_jqlo2")
 item_type = "music"
 item_level = 1
+item_click = true

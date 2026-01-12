@@ -27,7 +27,6 @@ func update_text(item: Item):
 		text_gen = "item";
 		
 	desc_string = item.item_type + "_" + text_gen + str(item.item_level);
-	print(desc_string)
 	if desc_string in DESCRIPTIONS:
 		textbox.text = DESCRIPTIONS[desc_string];
 	

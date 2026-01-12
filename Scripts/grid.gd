@@ -75,8 +75,6 @@ func insert_item(item: Item, initial_pos: Vector2):
 		item.position = grid_to_pixel(initial_pos.x, initial_pos.y);
 
 		if item.item_gen == false:
-			print(initial_pos)
-			print(empty_space)
 			item.move(grid_to_pixel(empty_space.x, empty_space.y));
 		else:
 			item.position = grid_to_pixel(empty_space.x, empty_space.y);
@@ -85,11 +83,7 @@ func insert_item(item: Item, initial_pos: Vector2):
 
 		# Return a "board is full" message
 		return null;
-		
-# TODO: Create function for generating items if the item is a generator
-# This would involve detecting clicks/double-clicks
-# Click - select icon and show desc
-# Double-click - generate new item
+
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
@@ -97,7 +91,6 @@ func _input(event):
 			var clicked_pos = pixel_to_grid(first_click.x, first_click.y);
 			var clicked_item = grid[clicked_pos.x][clicked_pos.y];
 			global.update_description.emit(clicked_item);
-			# TODO: Add ability to update the description with selected item
 			if event.is_double_click():
 				if clicked_item.item_gen:
 					if find_empty_tile() != null:
@@ -105,19 +98,6 @@ func _input(event):
 						new_item.item_gen = false;
 						add_child(new_item);
 						insert_item(new_item, clicked_pos);
-						
-	#if Input.is_action_just_pressed("ui_touch"):
-		#first_touch = get_global_mouse_position();
-		#var grid_position = pixel_to_grid(first_touch.x, first_touch.y);
-		#if is_in_grid(grid_position.x, grid_position.y):
-			#controlling = true;
-		#print(grid_position);
-	#if Input.is_action_just_released("ui_touch"):
-		#final_touch = get_global_mouse_position();
-		#var grid_position = pixel_to_grid(final_touch.x, final_touch.y);
-		#if is_in_grid(grid_position.x, grid_position.y) && controlling:
-			#touch_difference(pixel_to_grid(first_touch.x, first_touch.y), grid_position);
-			#controlling = false;
 
 func on_move_item(first_pos, final_pos):
 	var first_grid_pos = pixel_to_grid(first_pos.x, first_pos.y);

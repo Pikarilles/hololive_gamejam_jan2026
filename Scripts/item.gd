@@ -5,6 +5,7 @@ class_name Item
 @export var item_type: String;
 @export var item_level: int;
 @export var item_gen: bool;
+@export var item_click: bool;
 
 var MAX_LEVELS = {
 	"music_generator": 1,
@@ -24,22 +25,25 @@ func _physics_process(delta: float):
 		tween.tween_property(self, "position", get_global_mouse_position() - mouse_offset, delay * delta);
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			if get_rect().has_point(to_local(event.position)):
-				first_position = event.position;
-				is_dragging = true;
-				mouse_offset = get_global_mouse_position() - global_position;
-		else:
-			if get_rect().has_point(to_local(event.position)) && is_dragging:
-				final_position = event.position;
-				is_dragging = false;
-				global.move_item.emit(first_position, final_position);
+	if item_click:
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				if get_rect().has_point(to_local(event.position)):
+					first_position = event.position;
+					is_dragging = true;
+					mouse_offset = get_global_mouse_position() - global_position;
+			else:
+				if get_rect().has_point(to_local(event.position)) && is_dragging:
+					final_position = event.position;
+					is_dragging = false;
+					global.move_item.emit(first_position, final_position);
 
-func _init(p_type: String = "music", p_level: int = 1, p_gen: bool = false):
+func _init(p_type: String = "music", p_level: int = 1,
+		   p_gen: bool = false, p_click: bool = true):
 	item_type = p_type;
 	item_level = p_level;
 	item_gen = p_gen;
+	item_click = p_click;
 
 func _ready():
 	image_manager(item_level);

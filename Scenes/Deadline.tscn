@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs2p3oxwofyct"]
+[gd_scene load_steps=8 format=3 uid="uid://bs2p3oxwofyct"]
 
 [ext_resource type="Script" uid="uid://d3eup0gyutns5" path="res://Scripts/deadline.gd" id="1_82bga"]
 [ext_resource type="Texture2D" uid="uid://cfyxan0ijkvm5" path="res://Assets/Background/DeadlinesBox.png" id="1_n1hfm"]
+[ext_resource type="AudioStream" uid="uid://ldv5oyge8njr" path="res://Assets/Audio/success.mp3" id="3_cmepw"]
+[ext_resource type="AudioStream" uid="uid://bel3d0gpk3k8b" path="res://Assets/Audio/fail.mp3" id="4_3ns64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmepw"]
+size = Vector2(174, 61)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82bga"]
 bg_color = Color(0.93661666, 0.3943417, 0.47829765, 1)
@@ -11,23 +16,34 @@ bg_color = Color(0.93661666, 0.3943417, 0.47829765, 1)
 [node name="Deadline" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("1_82bga")
 
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+process_mode = 3
+z_index = 1
+position = Vector2(91, 34.5)
+shape = SubResource("RectangleShape2D_cmepw")
+
 [node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(175, 65)
 layout_mode = 0
-offset_top = -150.0
-offset_right = 181.0
-offset_bottom = 68.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 180.0
+offset_bottom = 67.0
 texture = ExtResource("1_n1hfm")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="OrderList" type="HBoxContainer" parent="."]
+[node name="DeadlineList" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 4.0
-offset_right = 178.0
-offset_bottom = 65.0
+offset_left = 4.0
+offset_right = 180.0
+offset_bottom = 61.0
+alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_direction = 2
@@ -51,4 +67,13 @@ show_percentage = false
 wait_time = 5.0
 autostart = true
 
+[node name="SuccessSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cmepw")
+
+[node name="FailSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3ns64")
+
+[connection signal="input_event" from="ClickArea" to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="ClickArea" to="." method="_on_click_area_mouse_entered"]
 [connection signal="timeout" from="VBoxContainer/TimeRemaining/Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="FailSound" to="." method="_on_fail_sound_finished"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd4h4o6ygon33"]
+[gd_scene load_steps=6 format=3 uid="uid://cd4h4o6ygon33"]
 
 [ext_resource type="Script" uid="uid://buukpfcvwe3oh" path="res://Scripts/title_screen.gd" id="1_kjfxj"]
 [ext_resource type="Texture2D" uid="uid://bqfy5psdva02r" path="res://Assets/Art/GameLogo.png" id="2_n15yj"]
 [ext_resource type="Texture2D" uid="uid://e01qxawv8ppt" path="res://Assets/Art/Tutorial.png" id="4_emot1"]
+[ext_resource type="AudioStream" uid="uid://cja1iw57gim7t" path="res://Assets/Audio/title.mp3" id="5_emot1"]
 [ext_resource type="Texture2D" uid="uid://b2b7rhbcbv874" path="res://Assets/Background/Credits.png" id="5_i5sur"]
 
 [node name="TitleScreen" type="Control"]
@@ -99,6 +100,7 @@ text = "Back
 "
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_emot1")
 autoplay = true
 
 [connection signal="pressed" from="MenuButtons/Start" to="." method="_on_start_pressed"]

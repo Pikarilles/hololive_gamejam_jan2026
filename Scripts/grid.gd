@@ -7,7 +7,7 @@ extends Node2D
 @export var offset: int;
 
 @onready var test_item = $ItemMusic;
-
+@onready var merge_sound = $MergeSound;
 # Placeholder generator variable
 
 
@@ -123,6 +123,7 @@ func process_pieces(first_grid_pos, final_grid_pos):
 				first_item.queue_free();
 				other_item.update_level();
 				grid[final_grid_pos.x][final_grid_pos.y] = other_item;
+				merge_sound.play();
 			else:
 				grid[first_grid_pos.x][first_grid_pos.y] = other_item;
 				grid[final_grid_pos.x][final_grid_pos.y] = first_item;

@@ -60,12 +60,12 @@ custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_82bga")
 theme_override_styles/fill = SubResource("StyleBoxFlat_subih")
-max_value = 5.0
+max_value = 60.0
 fill_mode = 1
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="VBoxContainer/TimeRemaining"]
-wait_time = 5.0
+wait_time = 60.0
 autostart = true
 
 [node name="SuccessSound" type="AudioStreamPlayer2D" parent="."]

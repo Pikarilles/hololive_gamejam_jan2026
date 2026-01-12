@@ -9,7 +9,7 @@ class_name Item
 
 var MAX_LEVELS = {
 	"music_generator": 1,
-	"music_item": 6
+	"music_item": 8
 }
 
 var first_position = Vector2(0, 0);

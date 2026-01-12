@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4l07cchjw5ds"]
+[gd_scene load_steps=10 format=3 uid="uid://c4l07cchjw5ds"]
 
 [ext_resource type="Script" uid="uid://d14jhihlbqn54" path="res://Scenes/main_game.gd" id="1_kvfik"]
 [ext_resource type="Texture2D" uid="uid://1poit00bwfuf" path="res://Assets/Background/GridBox.png" id="1_yprpe"]
@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://cvjf0fybsc50n" path="res://Assets/Audio/main-bgm.mp3" id="6_d4f28"]
 [ext_resource type="AudioStream" uid="uid://diwqdu871l2ii" path="res://Assets/Audio/merge.mp3" id="6_iuea6"]
 [ext_resource type="AudioStream" uid="uid://bel3d0gpk3k8b" path="res://Assets/Audio/fail.mp3" id="9_3bmkb"]
-[ext_resource type="AudioStream" uid="uid://ldv5oyge8njr" path="res://Assets/Audio/success.mp3" id="10_48eim"]
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_kvfik")
@@ -100,6 +99,3 @@ theme_override_constants/separation = 177
 
 [node name="FailedSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_3bmkb")
-
-[node name="CompletedSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_48eim")

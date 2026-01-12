@@ -65,6 +65,9 @@ func find_empty_tile():
 			if not grid[j][i]:
 				return Vector2(j, i);
 	return null;
+	
+func get_grid():
+	return grid;
 
 func insert_item(item: Item, initial_pos: Vector2):
 	
@@ -90,14 +93,15 @@ func _input(event):
 			var first_click = get_global_mouse_position();
 			var clicked_pos = pixel_to_grid(first_click.x, first_click.y);
 			var clicked_item = grid[clicked_pos.x][clicked_pos.y];
-			global.update_description.emit(clicked_item);
-			if event.is_double_click():
-				if clicked_item.item_gen:
-					if find_empty_tile() != null:
-						var new_item = possible_items[0].instantiate();
-						new_item.item_gen = false;
-						add_child(new_item);
-						insert_item(new_item, clicked_pos);
+			if is_in_grid(clicked_pos.x, clicked_pos.y):
+				global.update_description.emit(clicked_item);
+				if event.is_double_click():
+					if clicked_item.item_gen:
+						if find_empty_tile() != null:
+							var new_item = possible_items[0].instantiate();
+							new_item.item_gen = false;
+							add_child(new_item);
+							insert_item(new_item, clicked_pos);
 
 func on_move_item(first_pos, final_pos):
 	var first_grid_pos = pixel_to_grid(first_pos.x, first_pos.y);
@@ -147,7 +151,6 @@ func process_pieces(first_grid_pos, final_grid_pos):
 		if other_item:
 			other_item.move(grid_to_pixel(first_grid_pos.x, first_grid_pos.y));
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-#	touch_input();
-	pass;
+func remove_item(grid_position):
+	var item_removed = grid[grid_position.x][grid_position.y];
+	item_removed.queue_free();

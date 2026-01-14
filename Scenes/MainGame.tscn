@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d14jhihlbqn54" path="res://Scripts/main_game.gd" id="1_kvfik"]
 [ext_resource type="Texture2D" uid="uid://1poit00bwfuf" path="res://Assets/Background/GridBox.png" id="1_yprpe"]
-[ext_resource type="Script" path="res://Scripts/description.gd" id="2_321ql"]
+[ext_resource type="Script" uid="uid://chl0tx843eaa1" path="res://Scripts/description.gd" id="2_321ql"]
 [ext_resource type="Script" uid="uid://n01lp5yte1h6" path="res://Scripts/grid.gd" id="2_e3m3f"]
 [ext_resource type="Texture2D" uid="uid://ivc2us38emgm" path="res://Assets/Background/DescriptionBox.png" id="2_ybmw1"]
 [ext_resource type="PackedScene" uid="uid://bnhv6of7trmqx" path="res://Scenes/ItemMusic.tscn" id="3_ws5ob"]
@@ -21,6 +21,7 @@ layer = -2
 custom_minimum_size = Vector2(350, 360)
 offset_right = 360.0
 offset_bottom = 640.0
+color = Color(0.4745098, 0.4392157, 0.43137255, 1)
 metadata/_edit_lock_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="BackgroundImage"]
@@ -45,7 +46,7 @@ offset_top = 8.0
 offset_right = 123.0
 offset_bottom = 31.0
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Completed: 0"
 
 [node name="FailedDeadline" type="Label" parent="."]
@@ -54,7 +55,7 @@ offset_top = 8.0
 offset_right = 314.0
 offset_bottom = 31.0
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Failed: 0"
 horizontal_alignment = 2
 
@@ -73,7 +74,7 @@ offset_left = 11.0
 offset_top = 578.0
 offset_right = 348.0
 offset_bottom = 632.0
-theme_override_colors/default_color = Color(0.021434637, 0.021434635, 0.021434633, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 12
 fit_content = true
 scroll_active = false

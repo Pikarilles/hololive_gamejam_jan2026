@@ -47,6 +47,8 @@ offset_right = 123.0
 offset_bottom = 31.0
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "Completed: 0"
 
 [node name="FailedDeadline" type="Label" parent="."]
@@ -56,6 +58,8 @@ offset_right = 314.0
 offset_bottom = 31.0
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "Failed: 0"
 horizontal_alignment = 2
 
@@ -75,6 +79,8 @@ offset_top = 578.0
 offset_right = 348.0
 offset_bottom = 632.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 12
 fit_content = true
 scroll_active = false

@@ -8,6 +8,15 @@ extends Node2D
 
 @onready var test_item = $ItemMusic;
 @onready var merge_sound = $MergeSound;
+
+const MAX_GENERATOR_LEVELS = {
+	"music": 5
+}
+
+var generator_levels = {
+	"music": 1
+}
+
 # Placeholder generator variable
 
 
@@ -34,6 +43,9 @@ func _ready() -> void:
 	add_child(first_generator);
 	insert_item(first_generator, Vector2(0, 0));
 	global.move_item.connect(on_move_item);
+	generator_levels = {
+		"music": 1
+	}
 
 func fill_grid_array():
 	var array = [];
@@ -99,6 +111,7 @@ func _input(event):
 					if clicked_item.item_gen:
 						if find_empty_tile() != null:
 							var new_item = possible_items[0].instantiate();
+							new_item.item_level = randi_range(1, generator_levels[new_item.item_type]);
 							new_item.item_gen = false;
 							add_child(new_item);
 							insert_item(new_item, clicked_pos);
@@ -128,6 +141,11 @@ func process_pieces(first_grid_pos, final_grid_pos):
 				other_item.update_level();
 				grid[final_grid_pos.x][final_grid_pos.y] = other_item;
 				merge_sound.play();
+				if other_item.item_level > global.max_user_levels[other_item.get_type_string()]:
+					global.max_user_levels[other_item.get_type_string()] += 1;
+				if other_item.item_level > generator_levels[other_item.item_type] &&\
+				   generator_levels[other_item.item_type] < MAX_GENERATOR_LEVELS[other_item.item_type]:
+					generator_levels[other_item.item_type] += 1;
 			else:
 				grid[first_grid_pos.x][first_grid_pos.y] = other_item;
 				grid[final_grid_pos.x][final_grid_pos.y] = first_item;

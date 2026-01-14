@@ -18,17 +18,26 @@ var item_scene = preload("res://Scenes/ItemMusic.tscn");
 
 var deadlines = [];
 
+var MAX_LEVELS = {
+	"music_generator": 1,
+	"music_item": 8
+}
+
 func _ready() -> void:
 	generate_deadline();
-
+	
 # Function to generate an order
 func generate_deadline():
 	var item_amount = randi_range(1, 3);
 	
 	for i in item_amount:
 		var item = item_scene.instantiate();
+		var user_max = global.max_user_levels[item.get_type_string()];
+		if user_max < MAX_LEVELS[item.get_type_string()]:
+			user_max += 1;
+		
 		item.item_click = false;
-		item.item_level = randi_range(1, 8);
+		item.item_level = randi_range(1, user_max);
 		#add_child(item);
 		deadlines.append(item);
 		#var item_rect = TextureRect.new();

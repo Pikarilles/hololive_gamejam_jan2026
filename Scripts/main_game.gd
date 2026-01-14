@@ -15,11 +15,15 @@ const MAX_DEADLINES = 2;
 var deadline_scene = preload("res://Scenes/Deadline.tscn")
 var completed_deadlines = 0;
 var failed_deadlines = 0;
-
+	
 var deadline_list = [];
 var grid_removals = [];
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	global.max_user_levels = {
+		"music_generator": 1,
+		"music_item": 1
+	}
 	generate_deadline_list(); # Replace with function body.
 
 func generate_deadline_list():

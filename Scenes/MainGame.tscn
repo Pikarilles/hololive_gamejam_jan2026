@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://c4l07cchjw5ds"]
 
-[ext_resource type="Script" uid="uid://d14jhihlbqn54" path="res://Scenes/main_game.gd" id="1_kvfik"]
+[ext_resource type="Script" uid="uid://d14jhihlbqn54" path="res://Scripts/main_game.gd" id="1_kvfik"]
 [ext_resource type="Texture2D" uid="uid://1poit00bwfuf" path="res://Assets/Background/GridBox.png" id="1_yprpe"]
-[ext_resource type="Script" uid="uid://chl0tx843eaa1" path="res://Scripts/description.gd" id="2_321ql"]
+[ext_resource type="Script" path="res://Scripts/description.gd" id="2_321ql"]
 [ext_resource type="Script" uid="uid://n01lp5yte1h6" path="res://Scripts/grid.gd" id="2_e3m3f"]
 [ext_resource type="Texture2D" uid="uid://ivc2us38emgm" path="res://Assets/Background/DescriptionBox.png" id="2_ybmw1"]
 [ext_resource type="PackedScene" uid="uid://bnhv6of7trmqx" path="res://Scenes/ItemMusic.tscn" id="3_ws5ob"]

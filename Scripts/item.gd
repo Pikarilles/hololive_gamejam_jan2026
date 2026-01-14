@@ -73,20 +73,21 @@ func image_manager(level):
 	self.texture = texture_image;
 
 func is_max_level():
-	var dict_string = "";
-	var text_gen = "";
+	var item_string = self.get_type_string();
 	
-	if item_gen:
-		text_gen = "generator";
-	else:
-		text_gen = "item";
-		
-	dict_string = item_type + "_" + text_gen;
-	
-	if dict_string in MAX_LEVELS:
-		if MAX_LEVELS[dict_string] == item_level:
+	if item_string in MAX_LEVELS:
+		if MAX_LEVELS[item_string] == item_level:
 			return true;
 		else:
 			return false;
 	return false;
-	
+
+func get_type_string():
+	var dict_string = "";
+	var text_gen = "";
+	if item_gen:
+		text_gen = "generator";
+	else:
+		text_gen = "item";
+	dict_string = item_type + "_" + text_gen;
+	return dict_string;
